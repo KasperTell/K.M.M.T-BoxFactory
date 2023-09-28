@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api", "api\api.csproj", "{81714AF1-F17C-4DD2-AC1B-DD914D37FA49}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api", "backend\api\api.csproj", "{81714AF1-F17C-4DD2-AC1B-DD914D37FA49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "infrastructure", "infrastructure\infrastructure.csproj", "{0D3F6594-11B9-46F1-AF47-24C5C1E00EA0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "infrastructure", "backend\infrastructure\infrastructure.csproj", "{0D3F6594-11B9-46F1-AF47-24C5C1E00EA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "service", "service\service.csproj", "{1F95086B-DFE5-4408-8274-49C67B9EC29A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "service", "backend\service\service.csproj", "{1F95086B-DFE5-4408-8274-49C67B9EC29A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
