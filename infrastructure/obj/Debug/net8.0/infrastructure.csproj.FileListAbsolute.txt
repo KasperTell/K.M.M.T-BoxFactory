@@ -1,0 +1,12 @@
+C:\Users\kaspe\Documents\GitHub\K.M.M.T-BoxFactory\infrastructure\bin\Debug\net8.0\infrastructure.deps.json
+C:\Users\kaspe\Documents\GitHub\K.M.M.T-BoxFactory\infrastructure\bin\Debug\net8.0\infrastructure.dll
+C:\Users\kaspe\Documents\GitHub\K.M.M.T-BoxFactory\infrastructure\bin\Debug\net8.0\infrastructure.pdb
+C:\Users\kaspe\Documents\GitHub\K.M.M.T-BoxFactory\infrastructure\obj\Debug\net8.0\infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kaspe\Documents\GitHub\K.M.M.T-BoxFactory\infrastructure\obj\Debug\net8.0\infrastructure.AssemblyInfoInputs.cache
+C:\Users\kaspe\Documents\GitHub\K.M.M.T-BoxFactory\infrastructure\obj\Debug\net8.0\infrastructure.AssemblyInfo.cs
+C:\Users\kaspe\Documents\GitHub\K.M.M.T-BoxFactory\infrastructure\obj\Debug\net8.0\infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\kaspe\Documents\GitHub\K.M.M.T-BoxFactory\infrastructure\obj\Debug\net8.0\infrastructure.sourcelink.json
+C:\Users\kaspe\Documents\GitHub\K.M.M.T-BoxFactory\infrastructure\obj\Debug\net8.0\infrastructure.dll
+C:\Users\kaspe\Documents\GitHub\K.M.M.T-BoxFactory\infrastructure\obj\Debug\net8.0\refint\infrastructure.dll
+C:\Users\kaspe\Documents\GitHub\K.M.M.T-BoxFactory\infrastructure\obj\Debug\net8.0\infrastructure.pdb
+C:\Users\kaspe\Documents\GitHub\K.M.M.T-BoxFactory\infrastructure\obj\Debug\net8.0\ref\infrastructure.dll
