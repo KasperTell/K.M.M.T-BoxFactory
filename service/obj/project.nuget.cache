@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "dhsCkByD3rlL85O41DLhu1cUVFWlQ04Lu9TiU7+rhSMv7I61sWsdBUhDWVpCQMxcifANfC8jTX9uRdwqo819Ug==",
+  "dgSpecHash": "ZLVUjNd3LHs5obN1LtS9O0qzvTehsrJzSv9jcLlOL3lEWgTumep74voOxDsJXB/xt0Bcbofu1N0Ca/5BdrvN1A==",
   "success": true,
   "projectFilePath": "C:\\Users\\kaspe\\Documents\\GitHub\\K.M.M.T-BoxFactory\\service\\service.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\kaspe\\.nuget\\packages\\dapper\\2.0.151\\dapper.2.0.151.nupkg.sha512",
+    "C:\\Users\\kaspe\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\kaspe\\.nuget\\packages\\npgsql\\8.0.0-preview.4\\npgsql.8.0.0-preview.4.nupkg.sha512"
+  ],
   "logs": []
 }

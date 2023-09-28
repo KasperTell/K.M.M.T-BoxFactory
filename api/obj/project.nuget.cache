@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "wfqlVd0YHtMMQC05PhFwrnzH9kMNzLx/epCCyNSI7YqMKrZAyoHvEZbXknR8QZh3j/fF5H1lJnRqmi6pQ/GE9w==",
+  "dgSpecHash": "fDYtedoX7/p2Z6mT8fjthzxeJWQ9FP91DsMG25FcJxsGvs8A76imIwZl8mNX+PcuDrgmnye1kAylxo0Gc/W5SA==",
   "success": true,
   "projectFilePath": "C:\\Users\\kaspe\\Documents\\GitHub\\K.M.M.T-BoxFactory\\api\\api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\kaspe\\.nuget\\packages\\dapper\\2.0.151\\dapper.2.0.151.nupkg.sha512",
     "C:\\Users\\kaspe\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.0-preview.7.23375.9\\microsoft.aspnetcore.openapi.8.0.0-preview.7.23375.9.nupkg.sha512",
     "C:\\Users\\kaspe\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\kaspe\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
