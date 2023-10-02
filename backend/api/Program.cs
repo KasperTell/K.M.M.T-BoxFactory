@@ -1,4 +1,6 @@
 using infrastructure;
+using infrastructure.BoxRepository;
+using service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,13 +18,13 @@ if (builder.Environment.IsProduction())
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddSingleton<BoxRepository>();
+builder.Services.AddSingleton<BoxService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
 
 app.UseSwagger();
 app.UseSwaggerUI();

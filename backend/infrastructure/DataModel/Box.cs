@@ -1,11 +1,13 @@
-﻿namespace DefaultNamespace;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DefaultNamespace;
 
 public class Box
 {
-    public int boxId { get; set; }
-    public string productName { get; set;  }
+    public int box_id { get; set; }
+    public string product_name { get; set;  }
     public int width { get; set; }
     public int height { get; set; }
     public int length { get; set; }
-    public string boxImgUrl { get; set; }
+    public string box_img_url { get; set; }
 }
