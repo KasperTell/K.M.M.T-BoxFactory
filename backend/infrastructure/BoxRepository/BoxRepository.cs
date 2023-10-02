@@ -36,7 +36,7 @@ public class BoxRepository
 
     public IEnumerable<Box> SearchBoxes(string searchQuery)
     {
-        var sql = $@"SELECT * FROM BoxFactory.box WHERE product_name LIKE '%{searchQuery}%';";
+        var sql = $@"SELECT * FROM BoxFactory.box WHERE product_name iLIKE '%{searchQuery}%';";
 
         using (var conn = _dataSource.OpenConnection())
         {
