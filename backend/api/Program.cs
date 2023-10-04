@@ -16,6 +16,7 @@ if (builder.Environment.IsProduction())
     builder.Services.AddNpgsqlDataSource(Utilities.ProperlyFormattedConnectionString);
 }
 
+
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddSingleton<BoxRepository>();
@@ -23,9 +24,15 @@ builder.Services.AddSingleton<BoxService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+var frontEndRelativePath = "./../../frontend/www";
+builder.Services.AddSpaStaticFiles(conf => conf.RootPath = frontEndRelativePath);
 
 var app = builder.Build();
-
+app.UseSpaStaticFiles();
+app.UseSpa(conf =>
+{
+    conf.Options.SourcePath = frontEndRelativePath;
+});
 app.UseSwagger();
 app.UseSwaggerUI();
 app.MapControllers();
