@@ -84,6 +84,10 @@ ngOnInit():void {
     });
     modal.present();
   }
+
+  details(box_id: number) {
+
+  }
 }
 
 

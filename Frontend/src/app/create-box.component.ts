@@ -15,9 +15,9 @@ import {firstValueFrom} from "rxjs";
         <ion-list>
 
           <ion-item>
-            <ion-input [formControl]="createNewboxFrom.controls.boxTitle" label="insert title for box please">
+            <ion-input [formControl]="createNewboxFrom.controls.product_name" label="insert title for box please">
             </ion-input>
-            <div *ngIf="!createNewboxFrom.controls.boxTitle.valid">Box title must be 4 characters
+            <div *ngIf="!createNewboxFrom.controls.product_name.valid">Box title must be 4 characters
             </div>
           </ion-item>
 
@@ -37,7 +37,7 @@ import {firstValueFrom} from "rxjs";
           </ion-item>
 
           <ion-item>
-            <ion-input [formControl]="createNewboxFrom.controls.coverImgUrl" label="insert coverimgurl for box please">
+            <ion-input [formControl]="createNewboxFrom.controls.box_img_url" label="insert coverimgurl for box please">
             </ion-input>
           </ion-item>
 
@@ -51,16 +51,16 @@ import {firstValueFrom} from "rxjs";
        })
 export class CreateBoxComponent {
 
-  boxTitle = new FormControl('', [Validators.minLength(3)])
+  product_name = new FormControl('', [Validators.minLength(3)])
 
-  coverImgUrl = new FormControl('', [Validators.minLength(5)])
+  box_img_url = new FormControl('', [Validators.minLength(5)])
 
   createNewboxFrom = this.fb.group({
-    boxTitle: this.boxTitle,
+    product_name: this.product_name,
     length: ['', Validators.required],
     height: ['', Validators.required],
     width: ['', Validators.required],
-    coverImgUrl: this.coverImgUrl
+    box_img_url: this.box_img_url
 
   })
 
