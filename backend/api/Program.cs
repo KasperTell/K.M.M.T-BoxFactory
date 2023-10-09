@@ -48,5 +48,7 @@ app.UseSpa(conf =>
     conf.Options.SourcePath = frontEndRelativePath;
 });
 */
+app.UseSwagger();
+app.UseSwaggerUI();
 app.MapControllers();
 app.Run();
