@@ -1,14 +1,16 @@
-﻿namespace TestNUnit;
+﻿using DefaultNamespace;
+
+namespace TestNUnit;
 
 [TestFixture]
 public class DeleteBox
 {
-    private BoxController _boxController;
+    private Box _boxController;
 
     [SetUp]
     public void Setup()
     {
-        _boxController = new BoxController();
+        _boxController = new Box();
     }
 
     [Test]
@@ -18,7 +20,7 @@ public class DeleteBox
         int boxId = 123;
 
         // Act
-        var result = _boxController.delete(boxId);
+        var result = _box.delete(boxId);
 
         // Assert
         Assert.That(result, Is.TypeOf<NoContentResult>());
