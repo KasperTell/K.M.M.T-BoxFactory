@@ -1,11 +1,14 @@
 import {Component, OnInit} from "@angular/core";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {environment} from "../environments/environment";
-import {firstValueFrom} from "rxjs";
+import {firstValueFrom, from} from "rxjs";
 import {Box, ResponseDto} from "../models";
 import {State} from "../state";
 import {ModalController, ToastController} from "@ionic/angular";
 import {CreateBoxComponent} from "./create-box.component";
+import {DetailsBoxComponent} from "./details-box.component";
+import {BoxModelservice} from "./BoxModel.service";
+
 
 @Component({
 
@@ -18,7 +21,9 @@ import {CreateBoxComponent} from "./create-box.component";
             <ion-title>{{box.product_name}}</ion-title>
           </ion-toolbar>
 
+          <ion-button (click)="Details(box.box_id, box.height)">Details</ion-button>
           <ion-button (click)="deleteBox(box.box_id)">delete</ion-button>
+
 
           <ion-card-subtitle>Dimension {{box.length}}, {{box.height}}, {{box.width}}</ion-card-subtitle>
           <img style="max-height: 200px;" [src]="box.box_img_url">
@@ -34,6 +39,10 @@ import {CreateBoxComponent} from "./create-box.component";
 
     </ion-content>
 
+    <div class="notofication to-Details">
+
+    </div>
+
 
   `,
 
@@ -43,7 +52,12 @@ import {CreateBoxComponent} from "./create-box.component";
 
 export class BoxFeed implements OnInit{
 
+box_id: number | undefined;
+
   constructor(public http: HttpClient, public modalController: ModalController, public state: State, public toastController: ToastController) {
+    const boxModelservice=new BoxModelservice();
+
+
   }
 
   async fetchBox() {
@@ -85,9 +99,34 @@ ngOnInit():void {
     modal.present();
   }
 
-  details(box_id: number) {
+
+  async Details(Box_id:  number , height: number | undefined) {
+
+    const boxModelservice=new BoxModelservice();
+
+    const box_id=Box_id;
+
+
+    const modal = await this.modalController.create({
+      component: DetailsBoxComponent
+
+
+    });
+    modal.present();
+
 
   }
+
+
+  get Box_id(): number {
+    return <number>this.Box_id;
+  }
+
+  set Box_id(value: number) {
+    this.Box_id = value;
+  }
+
+
 }
 
 
