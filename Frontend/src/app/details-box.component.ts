@@ -6,7 +6,6 @@ import {State} from "../state";
 import {Box, ResponseDto} from "../models";
 import {environment} from "../environments/environment";
 import {firstValueFrom} from "rxjs";
-import {BoxModelservice} from "./BoxModel.service";
 
 @Component({
 
@@ -62,9 +61,7 @@ export class DetailsBoxComponent {
 
   }
 
-   getId(){
-    const boxModelservice=new BoxModelservice();
-    return boxModelservice.id;
+   getId(){;
   }
 
 

@@ -7,7 +7,6 @@ import {State} from "../state";
 import {ModalController, ToastController} from "@ionic/angular";
 import {CreateBoxComponent} from "./create-box.component";
 import {DetailsBoxComponent} from "./details-box.component";
-import {BoxModelservice} from "./BoxModel.service";
 
 
 @Component({
@@ -55,7 +54,6 @@ export class BoxFeed implements OnInit{
 box_id: number | undefined;
 
   constructor(public http: HttpClient, public modalController: ModalController, public state: State, public toastController: ToastController) {
-    const boxModelservice=new BoxModelservice();
 
 
   }
@@ -63,7 +61,6 @@ box_id: number | undefined;
   async fetchBox() {
     const result = await firstValueFrom(this.http.get<Box[]>(environment.baseUrl + '/box/all'))
     this.state.box=result!;
-
   }
 
 ngOnInit():void {
@@ -101,8 +98,6 @@ ngOnInit():void {
 
 
   async Details(Box_id:  number , height: number | undefined) {
-
-    const boxModelservice=new BoxModelservice();
 
     const box_id=Box_id;
 
