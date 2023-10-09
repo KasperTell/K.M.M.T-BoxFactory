@@ -7,6 +7,7 @@ import {State} from "../state";
 import {ModalController, ToastController} from "@ionic/angular";
 import {CreateBoxComponent} from "./create-box.component";
 import {DetailsBoxComponent} from "./details-box.component";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -20,7 +21,7 @@ import {DetailsBoxComponent} from "./details-box.component";
             <ion-title>{{box.product_name}}</ion-title>
           </ion-toolbar>
 
-          <ion-button (click)="Details(box.box_id, box.height)">Details</ion-button>
+          <ion-button (click)="Details(box)">Details</ion-button>
           <ion-button (click)="deleteBox(box.box_id)">delete</ion-button>
 
 
@@ -53,7 +54,7 @@ export class BoxFeed implements OnInit{
 
 box_id: number | undefined;
 
-  constructor(public http: HttpClient, public modalController: ModalController, public state: State, public toastController: ToastController) {
+  constructor(public http: HttpClient, public modalController: ModalController, public state: State, public toastController: ToastController, private router: Router) {
 
 
   }
@@ -97,17 +98,17 @@ ngOnInit():void {
   }
 
 
-  async Details(Box_id:  number , height: number | undefined) {
-
-    const box_id=Box_id;
-
+  async Details(box: Box) {
 
     const modal = await this.modalController.create({
       component: DetailsBoxComponent
 
 
+
     });
-    modal.present();
+
+    this.router.navigate(['/box/', box.box_id]);
+    //modal.present();
 
 
   }
