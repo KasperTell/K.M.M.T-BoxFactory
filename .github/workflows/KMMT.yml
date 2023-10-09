@@ -24,7 +24,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+        
+      - name: run API
+        run: dotnet run
 
-      # Runs a single command using the runners shell
       - name: run fetch method
-        run: curl http://localhost:4200/box
+        run: curl http://localhost:5000/box/all
