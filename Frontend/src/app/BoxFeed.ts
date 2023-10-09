@@ -8,7 +8,8 @@ import {ModalController, ToastController} from "@ionic/angular";
 import {CreateBoxComponent} from "./create-box.component";
 import {DetailsBoxComponent} from "./details-box.component";
 import {Router} from "@angular/router";
-
+import {UpdateBoxComponent} from "./update-box.component";
+import {DataService} from "./data.service";
 
 @Component({
 
@@ -22,7 +23,8 @@ import {Router} from "@angular/router";
           </ion-toolbar>
 
           <ion-button (click)="Details(box)">Details</ion-button>
-          <ion-button (click)="deleteBox(box.box_id)">delete</ion-button>
+          <ion-button (click)="updateBox(box.box_id)">Update</ion-button>
+          <ion-button (click)="deleteBox(box.box_id)">Delete</ion-button>
 
 
           <ion-card-subtitle>Dimension {{box.length}}, {{box.height}}, {{box.width}}</ion-card-subtitle>
@@ -31,7 +33,7 @@ import {Router} from "@angular/router";
       </ion-list>
 
       <ion-fab>
-        <ion-fab-button data-testid="createBox" (click)="openModal()">
+        <ion-fab-button data-testid="createBox" (click)="createBox()">
           <ion-icon name="add-outline"></ion-icon>
         </ion-fab-button>
       </ion-fab>
@@ -52,9 +54,9 @@ import {Router} from "@angular/router";
 
 export class BoxFeed implements OnInit{
 
-box_id: number | undefined;
+boxNumber: number | undefined;
 
-  constructor(public http: HttpClient, public modalController: ModalController, public state: State, public toastController: ToastController, private router: Router) {
+  constructor(public http: HttpClient, public modalController: ModalController, public state: State, public toastController: ToastController, private router: Router,private data: DataService) {
 
 
   }
@@ -66,6 +68,7 @@ box_id: number | undefined;
 
 ngOnInit():void {
     this.fetchBox();
+  this.data.currentNumber.subscribe(BoxNumber=>this.boxNumber=BoxNumber)
 }
 
   async deleteBox(boxId: number | undefined) {
@@ -90,7 +93,7 @@ ngOnInit():void {
 
   }
 
-  async openModal() {
+  async createBox() {
     const modal = await this.modalController.create({
       component: CreateBoxComponent
     });
@@ -114,15 +117,16 @@ ngOnInit():void {
   }
 
 
-  get Box_id(): number {
-    return <number>this.Box_id;
+
+
+  async updateBox(box_id: number) {
+    this.data.changeMessage(box_id)
+    const modal = await this.modalController.create({
+
+      component: UpdateBoxComponent
+    });
+    modal.present();
   }
-
-  set Box_id(value: number) {
-    this.Box_id = value;
-  }
-
-
 }
 
 
