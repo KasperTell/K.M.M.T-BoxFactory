@@ -24,7 +24,7 @@ import {DataService} from "./data.service";
 
 
           <ion-button (click)="Details(box)">Details</ion-button>
-          <ion-button (click)="updateBox(box.box_id)">Update</ion-button>
+          <ion-button (click)="updateBox(box)">Update</ion-button>
           <ion-button data-testid="delete_button" (click)="deleteBox(box.box_id)">delete</ion-button>
 
 
@@ -55,7 +55,7 @@ import {DataService} from "./data.service";
 
 export class BoxFeed implements OnInit{
 
-boxNumber: number | undefined;
+  boxElement: Box | undefined;
 
   constructor(public http: HttpClient, public modalController: ModalController, public state: State, public toastController: ToastController, private router: Router,private data: DataService) {
 
@@ -69,7 +69,7 @@ boxNumber: number | undefined;
 
 ngOnInit():void {
     this.fetchBox();
-  this.data.currentNumber.subscribe(BoxNumber=>this.boxNumber=BoxNumber)
+  this.data.currentNumber.subscribe(boxElement=>this.boxElement=boxElement)
 }
 
   async deleteBox(boxId: number | undefined) {
@@ -120,8 +120,8 @@ ngOnInit():void {
 
 
 
-  async updateBox(box_id: number) {
-    this.data.changeMessage(box_id)
+  async updateBox(boxElement: Box) {
+    this.data.changeMessage(boxElement)
     const modal = await this.modalController.create({
 
       component: UpdateBoxComponent

@@ -14,7 +14,7 @@ import {DataService} from "./data.service";
     <ion-list>
 
       <ion-item>
-        <ion-input [formControl]="updateBoxFrom.controls.product_name" label="insert title for box please">
+        <ion-input  [formControl]="updateBoxFrom.controls.product_name" label="insert title for box please" placeholder=>
         </ion-input>
         <div *ngIf="!updateBoxFrom.controls.product_name.valid">Box title must be 4 characters
         </div>
@@ -65,13 +65,13 @@ export class UpdateBoxComponent implements OnInit
   })
 
 
-  boxNumber: number | undefined;
+  boxElement: Box | undefined;
   constructor(public fb: FormBuilder,public http: HttpClient, public state:State, public toastController: ToastController, public modalController : ModalController,private data: DataService) {
 
   }
 
   async submitUpdate() {
-    let boxNumber1 = this.boxNumber
+    let boxNumber1 = this.boxElement?.box_id
 
     try {
       const observable = this.http.put<Box>(environment.baseUrl + '/box/'+boxNumber1, this.updateBoxFrom.getRawValue())
@@ -98,7 +98,7 @@ export class UpdateBoxComponent implements OnInit
   }
 
   ngOnInit(): void {
-    this.data.currentNumber.subscribe(BoxNumber=>this.boxNumber=BoxNumber)
+    this.data.currentNumber.subscribe(boxElement=>this.boxElement=boxElement)
 
   }
 
