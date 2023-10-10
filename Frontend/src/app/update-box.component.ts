@@ -65,25 +65,31 @@ export class UpdateBoxComponent implements OnInit
 {
   boxElement: Box | undefined;
 
+  constructor(public fb: FormBuilder,public http: HttpClient, public state:State, public toastController: ToastController, public modalController : ModalController,private data: DataService) {
 
-  product_name = new FormControl('', [Validators.minLength(3)])
+  }
 
-  box_img_url = new FormControl('', [Validators.minLength(5)])
+  ngOnInit(): void {
+    this.data.currentNumber.subscribe(boxElement=>this.boxElement=boxElement)
+  }
+
+
+
+  product_name = new FormControl(this.data.box?.product_name, [Validators.minLength(3)])
+
+  box_img_url = new FormControl(this.data.box?.box_img_url, [Validators.minLength(5)])
 
   updateBoxFrom = this.fb.group({
     product_name: this.product_name,
-    length: ['', Validators.required],
-    height: ['', Validators.required],
-    width: ['', Validators.required],
+    length: [this.data.box?.length, Validators.required],
+    height: [this.data.box?.height, Validators.required],
+    width: [this.data.box?.width, Validators.required],
     box_img_url: this.box_img_url
 
   })
 
 
 
-  constructor(public fb: FormBuilder,public http: HttpClient, public state:State, public toastController: ToastController, public modalController : ModalController,private data: DataService) {
-
-  }
 
   async submitUpdate() {
     let boxNumber1 = this.boxElement?.box_id
@@ -92,12 +98,17 @@ export class UpdateBoxComponent implements OnInit
       const observable = this.http.put<Box>(environment.baseUrl + '/box/'+boxNumber1, this.updateBoxFrom.getRawValue())
       const response = await firstValueFrom(observable)
       this.state.box.push(response!);
+
+
+
       const toast = await this.toastController.create({
         message: 'The box was successfully saved yeeees',
         duration: 1233,
         color: "success"
       })
       toast.present();
+
+      location.reload();
       this.modalController.dismiss();
 
     } catch (e) {
@@ -112,33 +123,9 @@ export class UpdateBoxComponent implements OnInit
 
   }
 
-  ngOnInit(): void {
-    this.data.currentNumber.subscribe(boxElement=>this.boxElement=boxElement)
 
-  }
 
-  getBoxName()
-  {
-    return this.boxElement?.product_name
-  }
 
-  getBoxHeight()
-  {
-    return this.boxElement?.height
-  }
-  getBoxLength()
-  {
-    return this.boxElement?.length
-  }
-  getBoxWidth()
-  {
-    return this.boxElement?.width
-  }
-
-  getBoxUml()
-  {
-    return this.boxElement?.box_img_url
-  }
 
 
 }

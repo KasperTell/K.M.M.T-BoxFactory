@@ -59,8 +59,10 @@ export class BoxFeed implements OnInit{
 
   constructor(public http: HttpClient, public modalController: ModalController, public state: State, public toastController: ToastController, private router: Router,private data: DataService) {
 
-
   }
+
+
+
 
   async fetchBox() {
     const result = await firstValueFrom(this.http.get<Box[]>(environment.baseUrl + '/box/all'))
@@ -68,8 +70,12 @@ export class BoxFeed implements OnInit{
   }
 
 ngOnInit():void {
+
     this.fetchBox();
   this.data.currentNumber.subscribe(boxElement=>this.boxElement=boxElement)
+
+
+
 }
 
   async deleteBox(boxId: number | undefined) {
@@ -89,6 +95,7 @@ ngOnInit():void {
           color: "danger"
         });
         toast.present();
+
       }
     }
 
@@ -99,6 +106,7 @@ ngOnInit():void {
       component: CreateBoxComponent
     });
     modal.present();
+
   }
 
 
@@ -118,16 +126,19 @@ ngOnInit():void {
   }
 
 
-
-
   async updateBox(boxElement: Box) {
-    this.data.changeMessage(boxElement)
+    this.data.changeBox(boxElement)
     const modal = await this.modalController.create({
 
       component: UpdateBoxComponent
     });
     modal.present();
+
   }
+
+
+
+
 }
 
 

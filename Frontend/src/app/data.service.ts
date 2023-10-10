@@ -9,12 +9,18 @@ export class DataService{
 
   currentNumber=this.numberSource.asObservable();
 
+  box: Box | undefined
 
-changeMessage(boxElement: Box)
+changeBox(boxElement: Box)
 {
-this.numberSource.next(boxElement)
+  this.box=boxElement
+  this.numberSource.next(boxElement)
 }
 
+getBox()
+{
+  return this.box
+}
 
 
 
