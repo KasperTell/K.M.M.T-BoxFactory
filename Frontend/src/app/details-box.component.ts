@@ -1,12 +1,9 @@
-import {Component, Input} from "@angular/core";
+import {Component } from "@angular/core";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {ModalController, ToastController} from "@ionic/angular";
 import {HttpClient} from "@angular/common/http";
-import {State} from "../state";
-import {Box, ResponseDto} from "../models";
-import {environment} from "../environments/environment";
-import {firstValueFrom} from "rxjs";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Box } from "../models";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
 
@@ -16,7 +13,7 @@ import {ActivatedRoute, Router} from "@angular/router";
       `
         <ion-item>
           <ion-label>
-            <h1 >Box ID: {{box?.box_id}}</h1>
+            <h1>Box ID: {{box?.box_id}}</h1>
           </ion-label>
         </ion-item>
 

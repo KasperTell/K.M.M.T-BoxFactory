@@ -17,28 +17,32 @@ import {firstValueFrom} from "rxjs";
           <ion-item>
             <ion-input [formControl]="createNewboxFrom.controls.product_name" label="insert title for box please">
             </ion-input>
-            <div *ngIf="!createNewboxFrom.controls.product_name.valid">Box title must be 4 characters
+            <div *ngIf="!createNewboxFrom.controls.product_name.valid">Box title must be 3 characters long
             </div>
           </ion-item>
 
           <ion-item>
-            <ion-input [formControl]="createNewboxFrom.controls.length" label="insert length for box please">
+            <ion-input [formControl]="createNewboxFrom.controls.length" type="number" label="insert length for box please">
             </ion-input>
+            <div *ngIf="!createNewboxFrom.controls.length.valid">Box length has to be a number above 0</div>
           </ion-item>
 
           <ion-item>
-            <ion-input [formControl]="createNewboxFrom.controls.height" label="insert publisher for box please">
+            <ion-input [formControl]="createNewboxFrom.controls.height" type="number" label="insert height for box please">
             </ion-input>
+            <div *ngIf="!createNewboxFrom.controls.height.valid">Box height has to be a number above 0</div>
           </ion-item>
 
           <ion-item>
-            <ion-input [formControl]="createNewboxFrom.controls.width" label="insert width for box please">
+            <ion-input [formControl]="createNewboxFrom.controls.width" type="number" label="insert width for box please">
             </ion-input>
+            <div *ngIf="!createNewboxFrom.controls.width.valid">Box width has to be a number above 0</div>
           </ion-item>
 
           <ion-item>
             <ion-input [formControl]="createNewboxFrom.controls.box_img_url" label="insert coverimgurl for box please">
             </ion-input>
+            <div *ngIf="!createNewboxFrom.controls.box_img_url.valid">Box image has to be at least 5 characters long</div>
           </ion-item>
 
           <ion-button [disabled]="createNewboxFrom.invalid" (click)="submit()">send
@@ -51,17 +55,21 @@ import {firstValueFrom} from "rxjs";
        })
 export class CreateBoxComponent {
 
-  product_name = new FormControl('', [Validators.minLength(3)])
+  product_name = new FormControl('', [Validators.minLength(3), Validators.required])
 
-  box_img_url = new FormControl('', [Validators.minLength(5)])
+  length = new FormControl(0, [Validators.min(1), Validators.required])
 
+  height = new FormControl(0, [Validators.min(1), Validators.required])
+
+  width = new FormControl(0, [Validators.min(1), Validators.required])
+
+  box_img_url = new FormControl('', [Validators.minLength(5), Validators.required])
   createNewboxFrom = this.fb.group({
     product_name: this.product_name,
-    length: ['', Validators.required],
-    height: ['', Validators.required],
-    width: ['', Validators.required],
+    length: this.length,
+    height: this.height,
+    width: this.width,
     box_img_url: this.box_img_url
-
   })
 
 
