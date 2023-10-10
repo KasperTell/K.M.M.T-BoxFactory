@@ -10,14 +10,16 @@ import {DetailsBoxComponent} from "./details-box.component";
 import {Router} from "@angular/router";
 import {UpdateBoxComponent} from "./update-box.component";
 import {DataService} from "./data.service";
+import {$} from "kleur/colors";
 
 @Component({
 
 
   template: `
     <ion-content style="position: absolute; top: 0;">
-      <ion-list>
-        <ion-card [attr.data-testid]="'card_'+box.product_name" *ngFor="let box of state.box">
+
+      <ion-list [attr.data-testid]="'card_'+ box.product_name" *ngFor="let box of state.box">
+        <ion-card *ngIf="searchText === '' || box.product_name.toLowerCase().includes(searchText)">
           <ion-toolbar>
             <ion-title>{{box.product_name}}</ion-title>
           </ion-toolbar>
@@ -40,6 +42,9 @@ import {DataService} from "./data.service";
       </ion-fab>
 
 
+      <app-search (searchTextChanged)="onSearchTextEntered($event)" style="position: absolute; top: 0;"></app-search>
+
+
     </ion-content>
 
     <div class="notofication to-Details">
@@ -53,9 +58,25 @@ import {DataService} from "./data.service";
 
 })
 
+/*
+<ng-container *ngFor="let box of state.box">
+<div class="course-container" *ngIf="searchText === '' || box.product_name.toLowerCase().includes(searchText)">
+  </div>
+  </ng-container>
+
+ */
+
 export class BoxFeed implements OnInit{
 
   boxElement: Box | undefined;
+
+  searchText: string = '';
+
+  onSearchTextEntered(searchValue: string){
+    this.searchText = searchValue;
+    console.log(this.searchText)
+
+  }
 
   constructor(public http: HttpClient, public modalController: ModalController, public state: State, public toastController: ToastController, private router: Router,private data: DataService) {
 
@@ -137,8 +158,7 @@ ngOnInit():void {
   }
 
 
-
-
+  protected readonly $ = $;
 }
 
 
