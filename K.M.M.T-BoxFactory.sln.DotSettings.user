@@ -1,10 +1,11 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6f617c64_002D81fe_002D4173_002Db4bc_002D9878faf91837/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="BoxCanSuccessfullyBeDeletedFromUi" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7d645360_002D1355_002D4e3e_002Dab23_002Decb865037c99/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="BoxCanSuccessfullyBeCreatedFromHttpRequest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::CD587FBB-C8C2-47B4-89E6-D90CB4C83C2C::net8.0::TestNUnit.DeleteBox&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::CD587FBB-C8C2-47B4-89E6-D90CB4C83C2C::net8.0::Playwright.CreateTests.BoxCanSuccessfullyBeCreatedFromHttpClient&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f4780554_002De100_002D43f2_002D99ad_002D77c86e906974/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Delete_InvalidBoxId_ThrowsException" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f4780554_002De100_002D43f2_002D99ad_002D77c86e906974/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Delete_InvalidBoxId_ThrowsException" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;ProjectFile&gt;CD587FBB-C8C2-47B4-89E6-D90CB4C83C2C/f:DeleteBox.cs&lt;/ProjectFile&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestRunner/EnvironmentVariablesIndexed/=pgconn/@EntryIndexedValue">postgres://ivgcputr:qWMbqWS6xdH4V6920px_bAEF0n971sP6@snuffleupagus.db.elephantsql.com/ivgcputr</s:String>
