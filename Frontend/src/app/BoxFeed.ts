@@ -4,7 +4,7 @@ import {environment} from "../environments/environment";
 import {firstValueFrom, from} from "rxjs";
 import {Box, ResponseDto} from "../models";
 import {State} from "../state";
-import {ModalController, ToastController} from "@ionic/angular";
+import {AlertController, ModalController, ToastController} from "@ionic/angular";
 import {CreateBoxComponent} from "./create-box.component";
 import {DetailsBoxComponent} from "./details-box.component";
 import {Router} from "@angular/router";
@@ -25,7 +25,7 @@ import {DataService} from "./data.service";
 
           <ion-button (click)="Details(box)">Details</ion-button>
           <ion-button (click)="updateBox(box)">Update</ion-button>
-          <ion-button data-testid="delete_button" (click)="deleteBox(box.box_id)">delete</ion-button>
+          <ion-button data-testid="delete_button" (click)="deleteArticleAlert(box.box_id)">delete</ion-button>
 
 
           <ion-card-subtitle>Dimension {{box.length}}, {{box.height}}, {{box.width}}</ion-card-subtitle>
@@ -57,7 +57,8 @@ export class BoxFeed implements OnInit{
 
   boxElement: Box | undefined;
 
-  constructor(public http: HttpClient, public modalController: ModalController, public state: State, public toastController: ToastController, private router: Router,private data: DataService) {
+  constructor(public http: HttpClient, public modalController: ModalController, public state: State, public toastController: ToastController, private router: Router,private data: DataService,public alertController: AlertController)
+  {
 
   }
 
@@ -74,9 +75,28 @@ ngOnInit():void {
     this.fetchBox();
   this.data.currentNumber.subscribe(boxElement=>this.boxElement=boxElement)
 
-
-
 }
+
+
+  async deleteArticleAlert(boxId: number | undefined) {
+    let boxId1= boxId;
+    const alert = await this.alertController.create({
+
+      message: 'Do you want to delete article?',
+      buttons: [
+        {
+          role: "cancel",
+          text: "No"
+        },
+        {
+          role: "confirm",
+          text: "Yes",
+          handler: () => this.deleteBox(boxId1)
+        }]
+    })
+    alert.present();
+
+  }
 
   async deleteBox(boxId: number | undefined) {
     try {
