@@ -29,9 +29,7 @@ public class DeleteBox : PageTest
         await Page.GotoAsync(Helper.ClientAppBaseUrl);
         var card = Page.GetByTestId("card_" + product_name);
         await card.ClickAsync();
-        await Page.GetByTestId("open_edit").ClickAsync();
         await Page.GetByTestId("delete_button").ClickAsync();
-        await Page.GetByRole(AriaRole.Button, new() { Name = "Yes" }).ClickAsync(); //Clicking a confirm button
         await Page.GotoAsync(Helper.ClientAppBaseUrl); //Going back to feed, where we will make an expectation
 
 

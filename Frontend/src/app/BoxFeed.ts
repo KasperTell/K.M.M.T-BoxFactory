@@ -21,7 +21,7 @@ import {DetailsBoxComponent} from "./details-box.component";
           </ion-toolbar>
 
           <ion-button (click)="Details(box.box_id, box.height)">Details</ion-button>
-          <ion-button (click)="deleteBox(box.box_id)">delete</ion-button>
+          <ion-button data-testid="delete_button" (click)="deleteBox(box.box_id)">delete</ion-button>
 
 
           <ion-card-subtitle>Dimension {{box.length}}, {{box.height}}, {{box.width}}</ion-card-subtitle>
