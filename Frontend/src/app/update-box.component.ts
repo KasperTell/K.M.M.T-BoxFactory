@@ -7,36 +7,48 @@ import {Box} from "../models";
 import {environment} from "../environments/environment";
 import {firstValueFrom, observable} from "rxjs";
 import {DataService} from "./data.service";
+import {getName} from "ionicons/dist/types/components/icon/utils";
+
+
 
 
 @Component({
   template:`
+
+
+
     <ion-list>
 
+
       <ion-item>
-        <ion-input  [formControl]="updateBoxFrom.controls.product_name" label="insert title for box please" placeholder=>
+        <ion-input  [formControl]="updateBoxFrom.controls.product_name"
+                    label="insert title for box please" labelPlacement="floating" >
         </ion-input>
-        <div *ngIf="!updateBoxFrom.controls.product_name.valid">Box title must be 4 characters
+        <div *ngIf="!updateBoxFrom.controls.product_name.valid">Box title must be 3 characters
         </div>
       </ion-item>
 
       <ion-item>
-        <ion-input [formControl]="updateBoxFrom.controls.length" label="insert length for box please">
+        <ion-input [formControl]="updateBoxFrom.controls.length" label="insert length for box please"
+                   labelPlacement="floating">
         </ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-input [formControl]="updateBoxFrom.controls.height" label="insert publisher for box please">
+        <ion-input [formControl]="updateBoxFrom.controls.height" label="insert publisher for box please"
+                   labelPlacement="floating">
         </ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-input [formControl]="updateBoxFrom.controls.width" label="insert width for box please">
+        <ion-input [formControl]="updateBoxFrom.controls.width" label="insert width for box please"
+                   labelPlacement="floating">
         </ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-input [formControl]="updateBoxFrom.controls.box_img_url" label="insert coverimgurl for box please">
+        <ion-input [formControl]="updateBoxFrom.controls.box_img_url" label="insert coverimgurl for box please"
+                   labelPlacement="floating">
         </ion-input>
       </ion-item>
 
@@ -51,6 +63,9 @@ import {DataService} from "./data.service";
 
 export class UpdateBoxComponent implements OnInit
 {
+  boxElement: Box | undefined;
+
+
   product_name = new FormControl('', [Validators.minLength(3)])
 
   box_img_url = new FormControl('', [Validators.minLength(5)])
@@ -65,7 +80,7 @@ export class UpdateBoxComponent implements OnInit
   })
 
 
-  boxElement: Box | undefined;
+
   constructor(public fb: FormBuilder,public http: HttpClient, public state:State, public toastController: ToastController, public modalController : ModalController,private data: DataService) {
 
   }
@@ -101,5 +116,29 @@ export class UpdateBoxComponent implements OnInit
     this.data.currentNumber.subscribe(boxElement=>this.boxElement=boxElement)
 
   }
+
+  getBoxName()
+  {
+    return this.boxElement?.product_name
+  }
+
+  getBoxHeight()
+  {
+    return this.boxElement?.height
+  }
+  getBoxLength()
+  {
+    return this.boxElement?.length
+  }
+  getBoxWidth()
+  {
+    return this.boxElement?.width
+  }
+
+  getBoxUml()
+  {
+    return this.boxElement?.box_img_url
+  }
+
 
 }
