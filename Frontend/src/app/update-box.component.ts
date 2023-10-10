@@ -19,36 +19,39 @@ import {getName} from "ionicons/dist/types/components/icon/utils";
 
     <ion-list>
 
-
       <ion-item>
         <ion-input  [formControl]="updateBoxFrom.controls.product_name"
-                    label="insert title for box please" labelPlacement="floating" >
+                    labelPlacement="floating" >
+          <div slot="label">Insert title for box please <ion-text color="danger">(Box title must be 3 characters)</ion-text></div>
+
         </ion-input>
-        <div *ngIf="!updateBoxFrom.controls.product_name.valid">Box title must be 3 characters
+        <div *ngIf="!updateBoxFrom.controls.product_name.valid">
+
         </div>
       </ion-item>
 
       <ion-item>
-        <ion-input [formControl]="updateBoxFrom.controls.length" label="insert length for box please"
-                   labelPlacement="floating">
+        <ion-input [formControl]="updateBoxFrom.controls.length"  labelPlacement="floating">
+          <div slot="label">Insert length for box please <ion-text color="danger">(Positiv Number)</ion-text></div>
         </ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-input [formControl]="updateBoxFrom.controls.height" label="insert publisher for box please"
+        <ion-input [formControl]="updateBoxFrom.controls.height"
                    labelPlacement="floating">
+          <div slot="label">Insert height for box please <ion-text color="danger">(Positiv Number)</ion-text></div>
         </ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-input [formControl]="updateBoxFrom.controls.width" label="insert width for box please"
-                   labelPlacement="floating">
+        <ion-input [formControl]="updateBoxFrom.controls.width" labelPlacement="floating">
+          <div slot="label">Insert width for box please <ion-text color="danger">(Positiv Number)</ion-text></div>
         </ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-input [formControl]="updateBoxFrom.controls.box_img_url" label="insert coverimgurl for box please"
-                   labelPlacement="floating">
+        <ion-input [formControl]="updateBoxFrom.controls.box_img_url" labelPlacement="floating">
+          <div slot="label">Insert picture UML for box please <ion-text color="danger">(UMl title must be 5 characters)</ion-text></div>
         </ion-input>
       </ion-item>
 
@@ -75,18 +78,25 @@ export class UpdateBoxComponent implements OnInit
 
 
 
-  product_name = new FormControl(this.data.box?.product_name, [Validators.minLength(3)])
+  product_name = new FormControl(this.data.box?.product_name, [Validators.minLength(3), Validators.required])
 
-  box_img_url = new FormControl(this.data.box?.box_img_url, [Validators.minLength(5)])
+  length = new FormControl(this.data.box?.length, [Validators.min(1), Validators.required])
+
+  height = new FormControl(this.data.box?.height, [Validators.min(1), Validators.required])
+
+  width = new FormControl(this.data.box?.width, [Validators.min(1), Validators.required])
+
+  box_img_url = new FormControl(this.data.box?.box_img_url, [Validators.minLength(5), Validators.required])
 
   updateBoxFrom = this.fb.group({
     product_name: this.product_name,
-    length: [this.data.box?.length, Validators.required],
-    height: [this.data.box?.height, Validators.required],
-    width: [this.data.box?.width, Validators.required],
+    length: this.length,
+    height: this.height,
+    width: this.width,
     box_img_url: this.box_img_url
-
   })
+
+
 
 
 
