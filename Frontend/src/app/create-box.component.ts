@@ -15,33 +15,33 @@ import {firstValueFrom} from "rxjs";
         <ion-list>
 
           <ion-item>
-            <ion-input [formControl]="createNewboxFrom.controls.product_name" label="insert title for box please">
+            <ion-input data-testid="create_product_name_form" [formControl]="createNewboxFrom.controls.product_name" label="insert title for box please">
             </ion-input>
             <div *ngIf="!createNewboxFrom.controls.product_name.valid">Box title must be 4 characters
             </div>
           </ion-item>
 
           <ion-item>
-            <ion-input [formControl]="createNewboxFrom.controls.length" label="insert length for box please">
+            <ion-input data-testid="create_length_form" [formControl]="createNewboxFrom.controls.length" label="insert length for box please">
             </ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-input [formControl]="createNewboxFrom.controls.height" label="insert publisher for box please">
+            <ion-input data-testid="create_height_form" [formControl]="createNewboxFrom.controls.height" label="insert publisher for box please">
             </ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-input [formControl]="createNewboxFrom.controls.width" label="insert width for box please">
+            <ion-input data-testid="create_width_form" [formControl]="createNewboxFrom.controls.width" label="insert width for box please">
             </ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-input [formControl]="createNewboxFrom.controls.box_img_url" label="insert coverimgurl for box please">
+            <ion-input data-testid="create_box_img_url_form" [formControl]="createNewboxFrom.controls.box_img_url" label="insert coverimgurl for box please">
             </ion-input>
           </ion-item>
 
-          <ion-button [disabled]="createNewboxFrom.invalid" (click)="submit()">send
+          <ion-button data-testid="create_submit_form" [disabled]="createNewboxFrom.invalid" (click)="submit()">send
 
           </ion-button>
         </ion-list>

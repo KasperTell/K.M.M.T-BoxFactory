@@ -30,7 +30,7 @@ import {DetailsBoxComponent} from "./details-box.component";
       </ion-list>
 
       <ion-fab>
-        <ion-fab-button data-testid="createBox" (click)="openModal()">
+        <ion-fab-button data-testid="create_button" (click)="openModal()">
           <ion-icon name="add-outline"></ion-icon>
         </ion-fab-button>
       </ion-fab>

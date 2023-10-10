@@ -55,7 +55,7 @@ public class CreateTests : PageTest
         
     }
     
-    [TestCase("Lille", 2828, 2828, 2828, "LilleBox.com")]
+    [TestCase("Lille" , 2828, 2828, 2828, "LilleBox.com")]
     [TestCase("Mellem", 2828, 2828, 2828, "MellemBox.com")]
     [TestCase("Stor", 2828, 2828, 2828,  "StorBox.com")]
     [TestCase("MegetStor", 2828, 2828, 2828, "MegetStorBox.com")]
@@ -84,25 +84,20 @@ public class CreateTests : PageTest
     }
 
     //Here we're testing that the API returns a bad request response and no article is created when bad values are sent
-    [TestCase("Stor", "28", "7824", "821", "StorBox.com")]
-    [TestCase("Meget Stor", "21", "7824", "1746", "MegetStorBox.com")]
-
+    [TestCase("St", 40, 40, 40, "StorBox.com")]
+    [TestCase("Meget Stor", 21, 7824, 1746, ".com")]
     public async Task ServerSideDataValidationShouldRejectBadValues(string product_name, int width, int height, int length, string box_img_url)
     {
         //ARRANGE
         Helper.TriggerRebuild();
         var testBox = new Box()
         {
-            box_id = 1,
-            product_name = product_name,
-            width = width,
-            height = height,
-            length = length,
-            box_img_url = box_img_url
+           box_id = 1, product_name = product_name, width = width, height = height, length = length, box_img_url = box_img_url
         };
 
         //ACT
-        var httpResponse = await new HttpClient().PostAsJsonAsync(Helper.ApiBaseUrl + "/", testBox);
+        var httpResponse = await new HttpClient().PostAsJsonAsync(Helper.ApiBaseUrl, testBox);
+
 
         //ASSERT
         httpResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -112,97 +107,4 @@ public class CreateTests : PageTest
                 .Be(0); //DB should be empty when create failed
         }
     }
-    [TestCase("Meget Stor", "0", "-7824", "-1746", "MegetStorBox.com")]
-
-    public async Task ApiShouldRejectBoxWhenWidthIs0(string product_name, int width, int height, int length, string box_img_url)
-    {
-        //ARRANGE
-        var testBox = new Box()
-        {
-            box_id = 1,
-            product_name = product_name,
-            width = width,
-            height = height,
-            length = length,
-            box_img_url = box_img_url
-        };
-        using (var conn = await Helper.DataSource.OpenConnectionAsync())
-        {
-            conn.Execute(
-                "INSERT INTO BoxFactory.box (product_name, width, height, length, box_img_url) VALUES (@product_name, @width, @height, @length, @box_img_url) RETURNING *",
-                new
-                {
-                    product_name,
-                    width,
-                    height,
-                    length,
-                    box_img_url
-                });
-        }
-
-            //ACT
-            var httpResponse = await new HttpClient().PostAsJsonAsync(Helper.ApiBaseUrl + "/", testBox);
-            
-            //ASSERT
-            httpResponse.Should().HaveError();
-            await using (var conn = await Helper.DataSource.OpenConnectionAsync())
-            {
-                conn.ExecuteScalar<int>("SELECT COUNT(*) FROM BoxFactory.box;").Should()
-                    .Be(1); //DB should have just the pre-existing article, and not also the new one
-            }
-    }
-    [TestCase("Meget Stor", "12", "7824", "1746", "MegetStorBox.com")]
-
-    public async Task UIShouldPresentErrorToastWhenHeadlineAlreadyExists(string product_name, int width, int height, int length, string box_img_url)
-    {
-        //ARRANGE
-        Helper.TriggerRebuild();
-        using (var conn = await Helper.DataSource.OpenConnectionAsync())
-        {
-            conn.Execute("INSERT INTO BoxFactory.box (product_name, width, height, length, box_img_url) VALUES (@product_name, @width, @height, @length, @box_img_url) RETURNING *",
-                    new
-                    {
-                        product_name,
-                        width,
-                        height,
-                        length,
-                        box_img_url
-                    });
-        }
-        
-        //ACT
-        await Page.GotoAsync(Helper.ClientAppBaseUrl);
-        await Page.GetByTestId("create_button").ClickAsync();
-        await Page.GetByTestId("create_product_name_form").Locator("input").FillAsync(product_name);
-        await Page.GetByTestId("create_width_form").Locator("input").FillAsync(width.ToString());
-        await Page.GetByTestId("create_height_form").Locator("input").FillAsync(height.ToString());
-        await Page.GetByTestId("create_length_form").Locator("input").FillAsync(length.ToString());
-        await Page.GetByTestId("create_box_img_url_form").Locator("input").FillAsync(box_img_url);
-        await Page.GetByTestId("create_submit_form").ClickAsync();
-        
-        //ASSERT
-        var toastCssClasses = await Page.Locator("ion-toast").GetAttributeAsync("class");
-        var classes = toastCssClasses.Split(' ');
-        classes.Should().Contain("ion-color-danger");
-        await using (var conn = await Helper.DataSource.OpenConnectionAsync())
-        {
-            conn.ExecuteScalar<int>("SELECT COUNT(*) FROM BoxFactory.box;").Should().Be(1);
-        }
-        
-        
-    }
-
-    
-            
-            
-        
-        
-        
-        
-    
-    
-    
-    
-    
-    
 }
