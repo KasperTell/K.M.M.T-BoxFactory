@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "infrastructure", "backend\i
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "service", "backend\service\service.csproj", "{1F95086B-DFE5-4408-8274-49C67B9EC29A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNUnit", "TestNUnit\TestNUnit.csproj", "{CD587FBB-C8C2-47B4-89E6-D90CB4C83C2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{1F95086B-DFE5-4408-8274-49C67B9EC29A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F95086B-DFE5-4408-8274-49C67B9EC29A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F95086B-DFE5-4408-8274-49C67B9EC29A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD587FBB-C8C2-47B4-89E6-D90CB4C83C2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD587FBB-C8C2-47B4-89E6-D90CB4C83C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD587FBB-C8C2-47B4-89E6-D90CB4C83C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD587FBB-C8C2-47B4-89E6-D90CB4C83C2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

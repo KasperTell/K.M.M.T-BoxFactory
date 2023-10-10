@@ -22,9 +22,10 @@ import {DataService} from "./data.service";
             <ion-title>{{box.product_name}}</ion-title>
           </ion-toolbar>
 
+
           <ion-button (click)="Details(box)">Details</ion-button>
           <ion-button (click)="updateBox(box.box_id)">Update</ion-button>
-          <ion-button (click)="deleteBox(box.box_id)">Delete</ion-button>
+          <ion-button data-testid="delete_button" (click)="deleteBox(box.box_id)">delete</ion-button>
 
 
           <ion-card-subtitle>Dimension {{box.length}}, {{box.height}}, {{box.width}}</ion-card-subtitle>
