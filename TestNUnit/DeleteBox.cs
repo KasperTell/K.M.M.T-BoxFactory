@@ -7,13 +7,13 @@ using NUnit.Framework;
 using tests;
 using Tests;
 
-namespace PlaywrightTests;
+namespace TestNUnit;
 
 [TestFixture]
-public class DeleteTests : PageTest
+public class DeleteBox : PageTest
 {
-    [TestCase("aslkdjlksadj", "28", "7824", "1746", "LilleBox.com")]
-    public async Task ArticleCanSuccessfullyBeDeletedFromUi(string product_name, int width, int height, int length, string box_img_url)
+    [TestCase("hello", "28", "7824", "1746", "LilleBox.com")]
+    public async Task BoxCanSuccessfullyBeDeletedFromUi(string product_name, int width, int height, int length, string box_img_url)
     {
         //ARRANGE
         Helper.TriggerRebuild();
@@ -44,8 +44,8 @@ public class DeleteTests : PageTest
         }
     }
 
-    [TestCase("aslkdjlksadj", "28", "7824", "1746", "LilleBox.com")]
-    public async Task ArticleCanSuccessfullyBeDeletedFromHttpClient(string product_name, int width, int height, int length, string box_img_url)
+    [TestCase("Hello", "28", "7824", "1746", "LilleBox.com")]
+    public async Task BoxCanSuccessfullyBeDeletedFromHttpClient(string product_name, int width, int height, int length, string box_img_url)
     {
         //ARRANGE
         Helper.TriggerRebuild();
