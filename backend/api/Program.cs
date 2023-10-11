@@ -24,7 +24,7 @@ builder.Services.AddSingleton<BoxService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
-var frontEndRelativePath = "./../../frontend/www/";
+var frontEndRelativePath = "./../../Frontend/www/";
 builder.Services.AddSpaStaticFiles(conf => conf.RootPath = frontEndRelativePath);
 
 var app = builder.Build();
@@ -42,12 +42,12 @@ app.UseCors(options =>
         .AllowCredentials();
 
 });
-/*app.UseSpaStaticFiles();
+app.UseSpaStaticFiles();
 app.UseSpa(conf =>
 {
     conf.Options.SourcePath = frontEndRelativePath;
 });
-*/
+
 app.UseSwagger();
 app.UseSwaggerUI();
 app.MapControllers();
