@@ -56,21 +56,31 @@ public class BoxController : ControllerBase
             Console.WriteLine(e);
             throw new Exception("Error when searching", e);
         }
-    } 
+    }
 
     [HttpPost]
     [Route("/box")]
-    public Box post([FromBody] Box box)
+    public object post([FromBody] Box box)
     {
-        try
+        if (box.product_name.Length >= 3)
         {
-            return _boxService.createBox(box.product_name, box.width, box.height, box.length, box.box_img_url);
+            if (box.box_img_url.Length >= 5)
+            {
+                try
+                {
+                    return _boxService.createBox(box.product_name, box.width, box.height, box.length, box.box_img_url);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw new Exception("Error when creating a box", e);
+                }
+            }
+
+            return BadRequest(200);
         }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw new Exception("Error when creating a box", e);
-        }
+
+        return BadRequest(200);
     }
 
     [HttpPut]

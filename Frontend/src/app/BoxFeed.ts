@@ -36,7 +36,8 @@ import {$} from "kleur/colors";
       </ion-list>
 
       <ion-fab>
-        <ion-fab-button data-testid="createBox" (click)="createBox()">
+        <ion-fab-button data-testid="create_button" (click)="createBox()">
+
           <ion-icon name="add-outline"></ion-icon>
         </ion-fab-button>
       </ion-fab>

@@ -12,7 +12,7 @@ namespace TestNUnit;
 [TestFixture]
 public class DeleteBox : PageTest
 {
-    [TestCase("hello", "28", "7824", "1746", "LilleBox.com")]
+    [TestCase("hello", 28, 7824, 1746, "LilleBox.com")]
     public async Task BoxCanSuccessfullyBeDeletedFromUi(string product_name, int width, int height, int length, string box_img_url)
     {
         //ARRANGE
@@ -42,7 +42,7 @@ public class DeleteBox : PageTest
         }
     }
 
-    [TestCase("Hello", "28", "7824", "1746", "LilleBox.com")]
+    [TestCase("Hello", 28, 7824, 1746, "LilleBox.com")]
     public async Task BoxCanSuccessfullyBeDeletedFromHttpClient(string product_name, int width, int height, int length, string box_img_url)
     {
         //ARRANGE
