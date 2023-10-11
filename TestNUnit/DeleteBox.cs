@@ -30,6 +30,7 @@ public class DeleteBox : PageTest
         var card = Page.GetByTestId("card_" + product_name);
         await card.ClickAsync();
         await Page.GetByTestId("delete_button").ClickAsync();
+        await Page.GetByRole(AriaRole.Button, new() { Name = "Yes" }).ClickAsync();
         await Page.GotoAsync(Helper.ClientAppBaseUrl); //Going back to feed, where we will make an expectation
 
 
