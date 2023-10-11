@@ -68,6 +68,7 @@ export class UpdateBoxComponent implements OnInit
 {
   boxElement: Box | undefined;
 
+
   constructor(public fb: FormBuilder,public http: HttpClient, public state:State, public toastController: ToastController, public modalController : ModalController,private data: DataService) {
 
   }
@@ -97,7 +98,9 @@ export class UpdateBoxComponent implements OnInit
   })
 
   async submitUpdate() {
+
     let boxNumber1 = this.boxElement?.box_id
+
 
     try {
       const observable = this.http.put<Box>(environment.baseUrl + '/box/'+boxNumber1, this.updateBoxFrom.getRawValue())
@@ -127,8 +130,6 @@ export class UpdateBoxComponent implements OnInit
     }
 
   }
-
-
 
 
 

@@ -27,6 +27,7 @@ import {$} from "kleur/colors";
 
           <ion-button (click)="Details(box)">Details</ion-button>
           <ion-button (click)="updateBox(box)">Update</ion-button>
+
           <ion-button data-testid="delete_button" (click)="deleteArticleAlert(box.box_id)">delete</ion-button>
 
 
@@ -69,7 +70,10 @@ import {$} from "kleur/colors";
 
 export class BoxFeed implements OnInit{
 
+
   boxElement: Box | undefined;
+
+
 
 
   constructor(public http: HttpClient, public modalController: ModalController, public state: State, public toastController: ToastController, private router: Router,private data: DataService,public alertController: AlertController)
@@ -118,6 +122,7 @@ export class BoxFeed implements OnInit{
     alert.present();
 
   }
+
 
   async deleteBox(boxId: number | undefined) {
     try {
@@ -169,6 +174,7 @@ export class BoxFeed implements OnInit{
 
   async updateBox(boxElement: Box) {
     this.data.changeBox(boxElement)
+
     const modal = await this.modalController.create({
 
       component: UpdateBoxComponent
