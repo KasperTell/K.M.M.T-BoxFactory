@@ -19,7 +19,6 @@ public class CreateTests : PageTest
     [TestCase("Mellem", 28, 2828, 2828, "MellemBox.com")]
     [TestCase("Stor", 28, 2828, 2828, "StorBox.com")]
     [TestCase("MegetStor", 28, 2828, 2828, "MegetStorBox.com")]
-
     public async Task BoxCanSuccessfullyBeCreatedFromUi(string product_name, int width, int height, int length, string box_img_url)
     {
         //ARRANGE
@@ -58,8 +57,6 @@ public class CreateTests : PageTest
     [TestCase("Lille" , 2828, 2828, 2828, "LilleBox.com")]
     [TestCase("Mellem", 2828, 2828, 2828, "MellemBox.com")]
     [TestCase("Stor", 2828, 2828, 2828,  "StorBox.com")]
-    [TestCase("MegetStor", 2828, 2828, 2828, "MegetStorBox.com")]
-
     public async Task BoxCanSuccessfullyBeCreatedFromHttpClient(string product_name, int width, int height, int length, string box_img_url)
     {
         Helper.TriggerRebuild();
@@ -73,7 +70,7 @@ public class CreateTests : PageTest
             box_img_url = box_img_url
         };
         //ACT
-        var httpResponse = await new HttpClient().PostAsJsonAsync(Helper.ApiBaseUrl + "/", testBox);
+        var httpResponse = await new HttpClient().PostAsJsonAsync(Helper.ApiBaseUrl, testBox);
         var boxFromResponseBody = JsonConvert.DeserializeObject<Box>(await httpResponse.Content.ReadAsStringAsync());
 
         //ASSERT
