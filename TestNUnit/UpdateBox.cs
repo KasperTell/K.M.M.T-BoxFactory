@@ -49,5 +49,36 @@ public class UpdateTests : PageTest
         //Box with new product_name is present on feed after update
         await Expect(Page.GetByTestId("card_" + product_name)).ToBeVisibleAsync();
     }
-        
+    //API test: Now we're not using the frontend, so we're "isolating" from the API layer and down (just using HttpClient, no Playwright)
+    [TestCase("Lille" , 2828, 2828, 2828, "LilleBox.com")]
+    [TestCase("Mellem", 2828, 2828, 2828, "MellemBox.com")]
+    [TestCase("Stor", 2828, 2828, 2828,  "StorBox.com")]
+    [TestCase("MegetStor", 2828, 2828, 2828, "MegetStorBox.com")]
+
+    public async Task BoxCanSuccessfullyBeUpdatedFromHttpRequest(string product_name, int width, int height, int length, string box_img_url)
+    {
+        //ARRANGE
+        Helper.TriggerRebuild();
+        await using (var conn = await Helper.DataSource.OpenConnectionAsync())
+        {
+            
+            //Insert an article to be updated
+            conn.Execute(
+                "INSERT INTO BoxFactory.box (product_name, width, height, length, box_img_url) VALUES ('hardcodedProductName', 1, 5, 8, 'hardcodedBoxImgUrl') RETURNING *;");
+        }
+
+        var testBox = new Box()
+            {box_id = 1, product_name = product_name, width = width, height = height, length = length, box_img_url = box_img_url};
+
+        //ACT
+            var httpResponse = await new HttpClient().PutAsJsonAsync(Helper.ApiBaseUrl + "/1", testBox);
+            var boxFromResponseBody =
+                JsonConvert.DeserializeObject<Box>(await httpResponse.Content.ReadAsStringAsync());
+        //ASSERT
+        await using (var conn = await Helper.DataSource.OpenConnectionAsync())
+        {
+            conn.QueryFirst<Box>("SELECT * FROM BoxFactory.box;").Should()
+                .BeEquivalentTo(boxFromResponseBody); //Should be equal to box found in DB
+        }
+    }    
 }
