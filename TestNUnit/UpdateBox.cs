@@ -121,14 +121,14 @@ public class UpdateTests : PageTest
         {
             //Insert an box to be updated
             conn.QueryFirst<Box>(
-                "INSERT INTO BoxFactory.box (product_name, width, height, length, box_img_url) VALUES ('hardcodedProductName',143431, 3490, 3498, 'hardcodedBoxImgUrl') RETURNING *;");
+                "INSERT INTO BoxFactory.box(product_name, width, height, length, box_img_url) VALUES ('hardcodedProductName',143431, 3490, 3498, 'hardcodedBoxImgUrl') RETURNING *;");
         }
         
         var testBox = new Box()
             {box_id = 1, product_name = product_name, width = width, height = height, length = length, box_img_url = box_img_url};
 
         //ACT
-        var httpResponse = await new HttpClient().PutAsJsonAsync(Helper.ApiBaseUrl, testBox);
+        var httpResponse = await new HttpClient().PutAsJsonAsync(Helper.ApiBaseUrl + "/1", testBox);
         
         //ASSERT
         httpResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);

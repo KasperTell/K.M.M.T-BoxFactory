@@ -85,17 +85,26 @@ public class BoxController : ControllerBase
 
     [HttpPut]
     [Route("/box/{boxId}")]
-    public Box put([FromRoute] int boxId, [FromBody] Box box)
+    public Object put([FromRoute] int boxId, [FromBody] Box box)
     {
-        try
+        if (box.product_name.Length >= 3)
         {
-            return _boxService.updateBox(boxId, box.product_name, box.width, box.height, box.length, box.box_img_url);
+            if (box.box_img_url.Length >= 5)
+            {
+                try
+                {
+                    return _boxService.updateBox(boxId, box.product_name, box.width, box.height, box.length,
+                        box.box_img_url);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw new Exception("Error when updating a box", e);
+                }
+            }
+            return BadRequest(200);
         }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw new Exception("Error when updating a box", e);
-        }
+        return BadRequest(200);
     }
 
     [HttpDelete]
