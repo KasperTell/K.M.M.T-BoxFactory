@@ -57,6 +57,7 @@ public class CreateTests : PageTest
     [TestCase("Lille" , 2828, 2828, 2828, "LilleBox.com")]
     [TestCase("Mellem", 2828, 2828, 2828, "MellemBox.com")]
     [TestCase("Stor", 2828, 2828, 2828,  "StorBox.com")]
+    [TestCase("MegetStor", 28, 2828, 2828, "MegetStorBox.com")]
     public async Task BoxCanSuccessfullyBeCreatedFromHttpClient(string product_name, int width, int height, int length, string box_img_url)
     {
         Helper.TriggerRebuild();
