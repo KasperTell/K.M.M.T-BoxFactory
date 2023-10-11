@@ -112,7 +112,7 @@ public class UpdateTests : PageTest
     
     //Here we're testing that the API returns a bad request response and artiel is not updated when presented with bad values
     [TestCase("St", 40, 40, 40, "StorBox.com")]
-    [TestCase("Meget Stor", 21, 7824, 1746, ".com")]
+    [TestCase("Stor", 40, 40, 40, ".com")]
     public async Task ServerSideDataValidationShouldRejectBadValues(string product_name, int width, int height, int length, string box_img_url)
     {
         //ARRANGE
