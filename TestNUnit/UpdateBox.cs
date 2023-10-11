@@ -111,8 +111,8 @@ public class UpdateTests : PageTest
     }
     
     //Here we're testing that the API returns a bad request response and artiel is not updated when presented with bad values
-    [TestCase("", 40, 40, 40, "StorBox.com")]
-    [TestCase("Meget Stor", 21, 7824, 1746, "")]
+    [TestCase("St", 40, 40, 40, "StorBox.com")]
+    [TestCase("Meget Stor", 21, 7824, 1746, ".com")]
     public async Task ServerSideDataValidationShouldRejectBadValues(string product_name, int width, int height, int length, string box_img_url)
     {
         //ARRANGE
@@ -121,14 +121,14 @@ public class UpdateTests : PageTest
         {
             //Insert an box to be updated
             conn.QueryFirst<Box>(
-                "INSERT INTO BoxFactory.box (product_name, width, height, length, box_img_url) VALUES ('hardcodedProductName', 65728, 5467, 789087, 'hardcodedBoxImgUrl') RETURNING *;");
+                "INSERT INTO BoxFactory.box (product_name, width, height, length, box_img_url) VALUES ('hardcodedProductName',143431, 3490, 3498, 'hardcodedBoxImgUrl') RETURNING *;");
         }
         
         var testBox = new Box()
             {box_id = 1, product_name = product_name, width = width, height = height, length = length, box_img_url = box_img_url};
 
         //ACT
-        var httpResponse = await new HttpClient().PutAsJsonAsync(Helper.ApiBaseUrl + "/", testBox);
+        var httpResponse = await new HttpClient().PutAsJsonAsync(Helper.ApiBaseUrl, testBox);
         
         //ASSERT
         httpResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
