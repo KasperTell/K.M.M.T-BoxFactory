@@ -20,7 +20,7 @@ import {getName} from "ionicons/dist/types/components/icon/utils";
     <ion-list>
 
       <ion-item>
-        <ion-input  [formControl]="updateBoxFrom.controls.product_name"
+        <ion-input  data-testid="update_product_name_form" [formControl]="updateBoxFrom.controls.product_name"
                     labelPlacement="floating" >
           <div slot="label">Insert title for box please <ion-text color="danger">(Box title must be 3 characters)</ion-text></div>
 
@@ -31,31 +31,31 @@ import {getName} from "ionicons/dist/types/components/icon/utils";
       </ion-item>
 
       <ion-item>
-        <ion-input [formControl]="updateBoxFrom.controls.length"  labelPlacement="floating">
+        <ion-input data-testid="update_length_form" [formControl]="updateBoxFrom.controls.length"  labelPlacement="floating">
           <div slot="label">Insert length for box please <ion-text color="danger">(Positiv Number)</ion-text></div>
         </ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-input [formControl]="updateBoxFrom.controls.height"
+        <ion-input data-testid="update_height_form"[formControl]="updateBoxFrom.controls.height"
                    labelPlacement="floating">
           <div slot="label">Insert height for box please <ion-text color="danger">(Positiv Number)</ion-text></div>
         </ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-input [formControl]="updateBoxFrom.controls.width" labelPlacement="floating">
+        <ion-input data-testid="update_width_form"[formControl]="updateBoxFrom.controls.width" labelPlacement="floating">
           <div slot="label">Insert width for box please <ion-text color="danger">(Positiv Number)</ion-text></div>
         </ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-input [formControl]="updateBoxFrom.controls.box_img_url" labelPlacement="floating">
+        <ion-input data-testid="update_box_img_url_form"[formControl]="updateBoxFrom.controls.box_img_url" labelPlacement="floating">
           <div slot="label">Insert picture UML for box please <ion-text color="danger">(UMl title must be 5 characters)</ion-text></div>
         </ion-input>
       </ion-item>
 
-      <ion-button [disabled]="updateBoxFrom.invalid" (click)="submitUpdate()">send
+      <ion-button data-testid="update_submit_form" [disabled]="updateBoxFrom.invalid" (click)="submitUpdate()">send
 
       </ion-button>
     </ion-list>

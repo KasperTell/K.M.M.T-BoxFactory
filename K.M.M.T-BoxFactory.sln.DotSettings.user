@@ -2,6 +2,7 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7d645360_002D1355_002D4e3e_002Dab23_002Decb865037c99/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="BoxCanSuccessfullyBeCreatedFromHttpRequest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::CD587FBB-C8C2-47B4-89E6-D90CB4C83C2C::net8.0::Playwright.CreateTests.BoxCanSuccessfullyBeCreatedFromHttpClient&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::CD587FBB-C8C2-47B4-89E6-D90CB4C83C2C::net8.0::PlaywrightTests.UpdateTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	
