@@ -26,7 +26,7 @@ import {$} from "kleur/colors";
 
 
           <ion-button (click)="Details(box)">Details</ion-button>
-          <ion-button (click)="updateBox(box)">Update</ion-button>
+          <ion-button data-testid = "update_button"(click)="updateBox(box)">Update</ion-button>
           <ion-button data-testid="delete_button" (click)="deleteArticleAlert(box.box_id)">delete</ion-button>
 
 
