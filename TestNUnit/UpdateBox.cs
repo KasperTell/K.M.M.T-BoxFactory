@@ -80,5 +80,59 @@ public class UpdateTests : PageTest
             conn.QueryFirst<Box>("SELECT * FROM BoxFactory.box;").Should()
                 .BeEquivalentTo(boxFromResponseBody); //Should be equal to box found in DB
         }
-    }    
+    }
+    //Here we're testing that the API returns a bad request response and no article is created when bad values are sent
+    [TestCase("St", 40, 40, 40, "StorBox.com")]
+    [TestCase("Meget Stor", 21, 7824, 1746, ".com")]
+    public async Task ClientSideDataValidationShouldRejectBadValues(string product_name, int width, int height, int length, string box_img_url)
+    {
+        //ARRANGE
+        Helper.TriggerRebuild();
+        var box = new Box(){box_id = 1, product_name = product_name, width = width, height = height, length = length, box_img_url = box_img_url};
+
+        await using (var conn = await Helper.DataSource.OpenConnectionAsync())
+            
+        {
+            //Insert an article to update
+            conn.QueryFirst<Box>(
+                "INSERT INTO BoxFactory.box (product_name, width, height, length, box_img_url) VALUES " +
+                "(@product_name, @width, @height, @length, @box_img_url) RETURNING *;", box);
+        }
+            //ACT
+        await Page.GotoAsync(Helper.ClientAppBaseUrl);
+        await Page.GetByTestId("card_" + product_name).ClickAsync();
+        await Page.GetByTestId("update_button").ClickAsync();
+        await Page.GetByTestId("update_product_name_form").Locator("input").FillAsync(product_name);
+        await Page.GetByTestId("update_width_form").Locator("input").FillAsync(width.ToString());
+        await Page.GetByTestId("update_height_form").Locator("input").FillAsync(height.ToString());
+        await Page.GetByTestId("update_length_form").Locator("input").FillAsync(length.ToString());
+        await Page.GetByTestId("update_box_img_url_form").Locator("input").FillAsync(box_img_url);
+        await Expect(Page.GetByTestId("update_submit_form")).ToHaveAttributeAsync("aria-disabled", "true");
+    }
+    
+    //Here we're testing that the API returns a bad request response and artiel is not updated when presented with bad values
+    [TestCase("", 40, 40, 40, "StorBox.com")]
+    [TestCase("Meget Stor", 21, 7824, 1746, "")]
+    public async Task ServerSideDataValidationShouldRejectBadValues(string product_name, int width, int height, int length, string box_img_url)
+    {
+        //ARRANGE
+        Helper.TriggerRebuild();
+        await using (var conn = await Helper.DataSource.OpenConnectionAsync())
+        {
+            //Insert an box to be updated
+            conn.QueryFirst<Box>(
+                "INSERT INTO BoxFactory.box (product_name, width, height, length, box_img_url) VALUES ('hardcodedProductName', 65728, 5467, 789087, 'hardcodedBoxImgUrl') RETURNING *;");
+        }
+        
+        var testBox = new Box()
+            {box_id = 1, product_name = product_name, width = width, height = height, length = length, box_img_url = box_img_url};
+
+        //ACT
+        var httpResponse = await new HttpClient().PutAsJsonAsync(Helper.ApiBaseUrl + "/", testBox);
+        
+        //ASSERT
+        httpResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+
+    }
+    
 }
