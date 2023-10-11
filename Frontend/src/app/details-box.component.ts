@@ -10,7 +10,7 @@ import {ActivatedRoute} from "@angular/router";
   selector: ``,
   template:
 
-      `
+      ` <ion-content style="position: absolute; top: 0;">
         <ion-item>
           <ion-label>
             <h1>Box ID: {{box?.box_id}}</h1>
@@ -44,7 +44,7 @@ import {ActivatedRoute} from "@angular/router";
             <p>Width</p>
           </ion-label>
         </ion-item>
-
+      </ion-content>
       `
 
        })

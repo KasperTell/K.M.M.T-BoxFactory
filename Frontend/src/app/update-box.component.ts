@@ -105,7 +105,8 @@ export class UpdateBoxComponent implements OnInit
     try {
       const observable = this.http.put<Box>(environment.baseUrl + '/box/'+boxNumber1, this.updateBoxFrom.getRawValue())
       const response = await firstValueFrom(observable)
-      this.state.box.push(response!);
+      const id = this.state.box.findIndex(b => b.box_id == response.box_id);
+      this.state.box[id] = response;
 
 
 
@@ -116,7 +117,7 @@ export class UpdateBoxComponent implements OnInit
       })
       toast.present();
 
-      location.reload();
+    //  location.reload();
       this.modalController.dismiss();
 
     } catch (e) {
