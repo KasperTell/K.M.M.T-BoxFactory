@@ -22,64 +22,36 @@ import {getName} from "ionicons/dist/types/components/icon/utils";
       <ion-item>
         <ion-input  [formControl]="updateBoxFrom.controls.product_name"
                     labelPlacement="floating" >
-
-          <div slot="label">insert title for box please <ion-text color="danger">(Must be 3 characters)</ion-text></div>
-        </ion-input>
-        <div *ngIf="!updateBoxFrom.controls.product_name.valid">
-
           <div slot="label">Insert title for box please <ion-text color="danger">(Box title must be 3 characters)</ion-text></div>
 
         </ion-input>
         <div *ngIf="!updateBoxFrom.controls.product_name.valid">
 
-
         </div>
       </ion-item>
 
       <ion-item>
-
-        <ion-input [formControl]="updateBoxFrom.controls.length"
-                   labelPlacement="floating">
-          <div slot="label">Insert length for box please <ion-text color="danger">(Positive number)</ion-text></div>
-
         <ion-input [formControl]="updateBoxFrom.controls.length"  labelPlacement="floating">
           <div slot="label">Insert length for box please <ion-text color="danger">(Positiv Number)</ion-text></div>
-
         </ion-input>
       </ion-item>
 
       <ion-item>
         <ion-input [formControl]="updateBoxFrom.controls.height"
                    labelPlacement="floating">
-
-          <div slot="label">Insert publisher for box please <ion-text color="danger">(Positive number)</ion-text></div>
-
           <div slot="label">Insert height for box please <ion-text color="danger">(Positiv Number)</ion-text></div>
-
         </ion-input>
       </ion-item>
 
       <ion-item>
-
-        <ion-input [formControl]="updateBoxFrom.controls.width"
-                   labelPlacement="floating">
-          <div slot="label">Insert width for box please<ion-text color="danger">(Positive number)</ion-text></div>
-
         <ion-input [formControl]="updateBoxFrom.controls.width" labelPlacement="floating">
           <div slot="label">Insert width for box please <ion-text color="danger">(Positiv Number)</ion-text></div>
-
         </ion-input>
       </ion-item>
 
       <ion-item>
-
-        <ion-input [formControl]="updateBoxFrom.controls.box_img_url"
-                   labelPlacement="floating">
-          <div slot="label">Insert coverimgurl for box please<ion-text color="danger">(Must be 5 characters)</ion-text></div>
-
         <ion-input [formControl]="updateBoxFrom.controls.box_img_url" labelPlacement="floating">
           <div slot="label">Insert picture UML for box please <ion-text color="danger">(UMl title must be 5 characters)</ion-text></div>
-
         </ion-input>
       </ion-item>
 
@@ -108,17 +80,6 @@ export class UpdateBoxComponent implements OnInit
 
   product_name = new FormControl(this.data.box?.product_name, [Validators.minLength(3), Validators.required])
 
-
-  length = new FormControl(this.data.box?.box_img_url, [Validators.min(1), Validators.required])
-
-  height = new FormControl(this.data.box?.length, [Validators.min(1), Validators.required])
-
-  width = new FormControl(this.data.box?.height, [Validators.min(1), Validators.required])
-
-  box_img_url = new FormControl(this.data.box?.box_img_url, [Validators.minLength(5), Validators.required])
-
-
-
   length = new FormControl(this.data.box?.length, [Validators.min(1), Validators.required])
 
   height = new FormControl(this.data.box?.height, [Validators.min(1), Validators.required])
@@ -127,7 +88,6 @@ export class UpdateBoxComponent implements OnInit
 
   box_img_url = new FormControl(this.data.box?.box_img_url, [Validators.minLength(5), Validators.required])
 
-
   updateBoxFrom = this.fb.group({
     product_name: this.product_name,
     length: this.length,
@@ -135,24 +95,6 @@ export class UpdateBoxComponent implements OnInit
     width: this.width,
     box_img_url: this.box_img_url
   })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   async submitUpdate() {
     let boxNumber1 = this.boxElement?.box_id
@@ -165,26 +107,25 @@ export class UpdateBoxComponent implements OnInit
 
 
       const toast = await this.toastController.create({
-        message: 'The box was successfully updated',
+        message: 'The box was successfully saved yeeees',
         duration: 1233,
         color: "success"
       })
       toast.present();
 
-
+      location.reload();
       this.modalController.dismiss();
-
 
     } catch (e) {
       const toast=await  this.toastController.create({
-        message: 'The box was unsuccessfully updated',
+        message: 'The box was unsuccessfully saved',
         duration: 1233,
         color: "danger"
       })
       toast.present();
 
     }
-    location.reload();
+
   }
 
 
@@ -193,5 +134,4 @@ export class UpdateBoxComponent implements OnInit
 
 
 }
-
 

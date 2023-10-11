@@ -70,27 +70,22 @@ export class BoxFeed implements OnInit{
 
   boxElement: Box | undefined;
 
-<<<<<<< HEAD
+
   constructor(public http: HttpClient, public modalController: ModalController, public state: State, public toastController: ToastController, private router: Router,private data: DataService,public alertController: AlertController)
   {
-=======
-  searchText: string = '';
 
-  onSearchTextEntered(searchValue: string){
-    this.searchText = searchValue;
-    console.log(this.searchText)
 
   }
 
-  constructor(public http: HttpClient, public modalController: ModalController, public state: State, public toastController: ToastController, private router: Router,private data: DataService) {
->>>>>>> Search-Function-
+    searchText: string = '';
 
-  }
+    onSearchTextEntered(searchValue: string) {
+      this.searchText = searchValue;
+      console.log(this.searchText)
+    }
 
 
-
-
-  async fetchBox() {
+    async fetchBox() {
     const result = await firstValueFrom(this.http.get<Box[]>(environment.baseUrl + '/box/all'))
     this.state.box=result!;
   }
