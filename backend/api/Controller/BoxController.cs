@@ -77,10 +77,10 @@ public class BoxController : ControllerBase
                 }
             }
 
-            return BadRequest(200);
+            return BadRequest(400);
         }
 
-        return BadRequest(200);
+        return BadRequest(400);
     }
 
     [HttpPut]
@@ -102,9 +102,9 @@ public class BoxController : ControllerBase
                     throw new Exception("Error when updating a box", e);
                 }
             }
-            return BadRequest(200);
+            return BadRequest(400);
         }
-        return BadRequest(200);
+        return BadRequest(400);
     }
 
     [HttpDelete]
