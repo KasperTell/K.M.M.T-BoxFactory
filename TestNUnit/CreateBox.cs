@@ -17,7 +17,7 @@ public class CreateTests : PageTest
     //Here we're using the entire stack from UI and down (using Playwright)
     [TestCase("Lille", 28, 2828, 2828, "LilleBox.com")]
     [TestCase("Mellem", 28, 2828, 2828, "MellemBox.com")]
-    [TestCase("Stor", 28, 2828, 2828, "StorBox.com")]
+    [TestCase("Stort", 28, 2828, 2828, "StorBox.com")]
     [TestCase("MegetStor", 28, 2828, 2828, "MegetStorBox.com")]
     public async Task BoxCanSuccessfullyBeCreatedFromUi(string product_name, int width, int height, int length, string box_img_url)
     {
