@@ -1,8 +1,8 @@
 ﻿namespace infrastructure;
 public class Utilities
 {
-    //private static readonly Uri Uri = new Uri(Environment.GetEnvironmentVariable("pgconn")!);
-    private static readonly Uri Uri = new Uri("postgres://ivgcputr:qWMbqWS6xdH4V6920px_bAEF0n971sP6@snuffleupagus.db.elephantsql.com/ivgcputr");
+    private static readonly Uri Uri = new Uri(Environment.GetEnvironmentVariable("pgconn")!);
+    
     
     public static readonly string
         ProperlyFormattedConnectionString = string.Format(
