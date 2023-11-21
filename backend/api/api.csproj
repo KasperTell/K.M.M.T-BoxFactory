@@ -8,11 +8,22 @@
     <RootNamespace>K.M.M.T_BoxFactory</RootNamespace>
   </PropertyGroup>
 
+    
+  
   <ItemGroup>
+
+    <None Include="frontend\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    
+    
+    
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0-preview.7.23375.9" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="8.0.0-rc.1.23421.29" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <PackageReference Include="Npgsql.DependencyInjection" Version="8.0.0-preview.4" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="7.0.5" />
   </ItemGroup>
 
   <ItemGroup>

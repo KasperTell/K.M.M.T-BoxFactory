@@ -24,8 +24,11 @@ builder.Services.AddSingleton<BoxService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
-var frontEndRelativePath = "./../../Frontend/www/";
+var frontEndRelativePath = "./Frontend/www/";
 builder.Services.AddSpaStaticFiles(conf => conf.RootPath = frontEndRelativePath);
+
+
+
 
 var app = builder.Build();
 
